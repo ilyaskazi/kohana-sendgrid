@@ -1,6 +1,6 @@
 <?php
 /**
- * Sendgrid Newsletter Template API Object
+ * Sendgrid Newsletter API Object
  * 
  * @package Sendgrid/Newsletter
  * @author Craig Sparks <craig@ad-vantagemedia.com>

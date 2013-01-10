@@ -7,8 +7,18 @@
  */
 class Sendgrid_Newsletter_Category {
 
+	/**
+	 * @var string The name of the category
+	 */
 	public $name;
 
+	/**
+	 * Initializes new category object
+	 *
+	 * @param array $data
+	 *
+	 * @return void
+	 */
 	public function __construct(array $data = array())
 	{
 		foreach($data as $key=>$val)

@@ -24,6 +24,11 @@ class Sendgrid_Response {
 	protected $_success = FALSE;
 
 	/**
+	 * @var array Data returned from request
+	 */
+	protected $_data = array();
+
+	/**
 	 * Initializes a response object.
 	 *
 	 * @param $response string The response string received from a sendgrid request
@@ -68,6 +73,7 @@ class Sendgrid_Response {
 		if(isset($converted->message) && $converted->message == 'success')
 		{
 			$this->_success = TRUE;
+			$this->_data = (array)$converted;
 		}
 
 		if(isset($converted->error))
@@ -91,6 +97,7 @@ class Sendgrid_Response {
 		if($converted->message == 'success')
 		{
 			$this->_success = TRUE;
+			$this->_data = (array)$converted;
 		}
 		else
 		{
@@ -117,5 +124,15 @@ class Sendgrid_Response {
 	public function get_error()
 	{
 		return $this->_error;
+	}
+
+	/**
+	 * Returns response data
+	 *
+	 * @return array
+	 */
+	public function get_data()
+	{
+		return $this->_data;
 	}
 }

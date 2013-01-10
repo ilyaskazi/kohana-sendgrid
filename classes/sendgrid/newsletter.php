@@ -51,17 +51,21 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 	/**
 	 * Adds a subscriber to a list
 	 *
-	 * @param Sendgrid_Newsletter_Subscriber
+	 * @param array $subscribers Array of subscribers to add to the list
+	 * @param Sendgrid_Newsletter_List $list List to add the subscribers to
 	 *
 	 * @return bool Returns true or false
 	 * @throws Sendgrid_Request_Exception
 	 */
-	public function add_subscriber(Sendgrid_Newsletter_Subscriber $subscriber)
+	public function add_subscribers(array $subscribers, Sendgrid_Newsletter_List $list)
 	{
+		foreach($subscribers as $subscriber)
+		{
 
+		}
 	}
 
-	public function delete_subscriber_from_list()
+	public function delete_subscribers_from_list(array $email, Sendgrid_Newsletter_List $list)
 	{
 
 	}
@@ -129,7 +133,7 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 
 	public function add_list(Sendgrid_Newsletter_List $list)
 	{
-
+		
 	}
 
 	public function edit_list(Sendgrid_Newsletter_List $list)
