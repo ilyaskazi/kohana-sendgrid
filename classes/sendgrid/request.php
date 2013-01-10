@@ -2,10 +2,10 @@
 
 class Sendgrid_Request {
 
-	const RESPONSE_FORMAT = 'XML'; // or JSON
 
 	protected $_api_user;
 	protected $_api_key;
+	protected $_response_format = 'JSON';
 
 	/**
 	 * @var  Request  Kohana request
@@ -42,30 +42,37 @@ class Sendgrid_Request {
 		$this->_api_key = $config['api_key'];
 	}
 
-	protected function do_request($url,$data)
-	{
-		$ch = curl_init($url);
-
-
-	}
-
+	/**
+	 * Executes a request to $url with $data passed as query variables
+	 *
+	 * @param $url
+	 * @param array $data
+	 *
+	 * @throws Sendgrid_Request_Exception
+	 */
 	public function execute($url, array $data)
 	{
 		$url = $url.'.'.self::RESPONSE_FORMAT;
 
-		$response = $this->_request::factory($url)->query($data);
+		$request = $this->_request;
 
-		$response = $this->_request
-				->post($data) // or something like that, not sure about method name
-				->execute();
+		$data = $data + array(
+			'api_user' => $this->_api_user,
+			'api_key'  => $this->_api_key
+		);
 
-		$response = $response->body(); // or something like that, not sure about method name
+		try
+		{
+			$response = $request::create($url)
+							->query($data)
+							->execute();
+		}
+		catch(Sendgrid_Request_Exception $e)
+		{
+			//Need to figure how to handle this
+		}
 
-		$status = parse_or_whatever($response);
-		$message = parse_or_whatever($response);
-
-		if ($status === 'error')
-			throw new Sendgrid_Request_Exception($message);
+		return new Sendgrid_Response($response->body(),$this->_response_format);
 	}
 
 }

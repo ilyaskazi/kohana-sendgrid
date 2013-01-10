@@ -15,7 +15,6 @@ abstract class Sendgrid_Base
 
 	public function __construct(Sendgrid_Request $request)
 	{
-		$this->request = $request;
+		$this->_request = $request;
 	}
-
 }

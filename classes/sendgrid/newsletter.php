@@ -2,17 +2,51 @@
 /**
  * Sendgrid Newsletter API Object
  *
+ * This is the base class for newsletter API operations for SendGrid
+ * http://sendgrid.com/docs/API_Reference/Newsletter_API/index.html
+ *
+ * This module supports all the features of the newsletter API with the exception
+ * of sender addresses and a/b testing (variations) (although they may be added later)
+ *
  * @package Sendgrid/Newsletter
  * @author Craig Sparks <craig@ad-vantagemedia.com>
  */
 class Sendgrid_Newsletter extends Sendgrid_Base
 {
+	//Newsletter URLs
+	const URL_NEWSLETTER_ADD    = 'http://sendgrid.com/api/newsletter/add';
+	const URL_NEWSLETTER_EDIT   = 'http://sendgrid.com/api/newsletter/edit';
+	const URL_NEWSLETTER_GET    = 'http://sendgrid.com/api/newsletter/get';
+	const URL_NEWSLETTERS_LIST  = 'http://sendgrid.com/api/newsletter/list';
+	const URL_NEWSLETTER_DELETE = 'http://sendgrid.com/api/newsletter/delete';
 
-	const URL_NEWSLETTER_ADD_NEW = '.....';
-	const URL_NEWSLETTER_GET = '.....';
-	const URL_NEWSLETTER_ADD_SUBSCRIBER = '';
-	const URL_NEWSLETTER_EDIT = '';
-	const URL_CATEGORY_CREATE = 'http://sendgrid.com/api/newsletter/category/create';
+	//Category URLs
+	const URL_CATEGORY_CREATE   = 'http://sendgrid.com/api/newsletter/category/create';
+	const URL_CATEGORY_ADD      = 'http://sendgrid.com/api/newsletter/category/add';
+	const URL_CATEGORY_REMOVE   = 'http://sendgrid.com/api/newsletter/category/remove';
+	const URL_CATEGORY_LIST     = 'http://sendgrid.com/api/newsletter/category/list';
+
+	//List URLs
+	const URL_LIST_ADD          = 'http://sendgrid.com/api/newsletter/lists/add';
+	const URL_LIST_EDIT         = 'http://sendgrid.com/api/newsletter/lists/edit';
+	const URL_LIST_GET          = 'http://sendgrid.com/api/newsletter/lists/get';
+	const URL_LIST_DELETE       = 'http://sendgrid.com/api/newsletter/lists/delete';
+
+	//Email URLs
+	const URL_EMAIL_ADD         = 'http://sendgrid.com/api/newsletter/lists/email/add';
+	const URL_EMAIL_GET         = 'http://sendgrid.com/api/newsletter/lists/email/get';
+	const URL_EMAIL_DELETE      = 'http://sendgrid.com/api/newsletter/lists/email/delete';
+
+	//Recipients URLs
+	const URL_RECIPIENTS_ADD    = 'http://sendgrid.com/api/newsletter/recipients/add';
+	const URL_RECIPIENTS_GET    = 'http://sendgrid.com/api/newsletter/recipients/get';
+	const URL_RECIPIENTS_DELETE = 'http://sendgrid.com/api/newsletter/delete';
+
+	//Schedule URLs
+	const URL_SCHEDULE_ADD      = 'http://sendgrid.com/sendgrid.com/api/newsletter/schedule/add';
+	const URL_SCHEDULE_GET      = 'http://sendgrid.com/api/newsletter/schedule/get';
+	const URL_SCHEDULE_DELETE   = 'http://sendgrid.com/api/newsletter/schedule/delete';
+
 
 	/**
 	 * Adds a subscriber to a list
