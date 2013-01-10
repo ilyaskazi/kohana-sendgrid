@@ -8,7 +8,7 @@ class Sendgrid_Request {
 	protected $_response_format = 'JSON';
 
 	/**
-	 * @var  Request  Kohana request
+	 * @var  Sendgrid_Request_Factory  Kohana request
 	 */
 	protected $_request;
 
@@ -17,10 +17,10 @@ class Sendgrid_Request {
 	 *
 	 * @throws Sendgrid_Request_Exception
 	 *
-	 * @param Request $request
+	 * @param Sendgrid_Request_Factory $request
 	 * @param array $config
 	 */
-	public function __construct(Request $request, array $config)
+	public function __construct(Sendgrid_Request_Factory $request, array $config)
 	{
 		//Assign request to property
 		$this->_request = $request;
@@ -50,7 +50,7 @@ class Sendgrid_Request {
 	 *
 	 * @throws Sendgrid_Request_Exception
 	 */
-	public function execute($url, array $data)
+	public function execute($url, array $data = array())
 	{
 		$url = $url.'.'.self::RESPONSE_FORMAT;
 

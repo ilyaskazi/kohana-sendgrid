@@ -96,9 +96,20 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 
 	}
 
-	public function add_category(Sendgrid_Newsletter_Category $category)
+    /**
+     * Adds a new newsletter category
+     *
+     * @param Sendgrid_Newsletter_Category $category
+     *
+     * @return Sendgrid_Response
+     */
+    public function add_category(Sendgrid_Newsletter_Category $category)
 	{
+        $data = array(
+            'category' => $category->name
+        );
 
+        return $this->_request->execute(self::URL_CATEGORY_CREATE,$data);
 	}
 
 	public function attach_category(Sendgrid_Newsletter_Category $category, Sendgrid_Newsletter_Template $template)
@@ -113,7 +124,7 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 
 	public function list_categories()
 	{
-
+        return $this->_request->execute(self::URL_CATEGORY_LIST);
 	}
 
 	public function add_list(Sendgrid_Newsletter_List $list)
