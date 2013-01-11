@@ -6,20 +6,21 @@
  * @author     Craig Sparks <craig@ad-vantagemedia.com>
  */
 
-class Sendgrid_Response {
+class Sendgrid_Response
+{
 
 	/**
-	 * @var string	The response type
+	 * @var string    The response type
 	 */
 	protected $_response_format = 'JSON';
 
 	/**
-	 * @var null	The response error
+	 * @var null    The response error
 	 */
 	protected $_error = NULL;
 
 	/**
-	 * @var bool	If the response is a success
+	 * @var bool    If the response is a success
 	 */
 	protected $_success = FALSE;
 
@@ -42,12 +43,12 @@ class Sendgrid_Response {
 	{
 		$this->_response_format = $format;
 
-		if($format == 'JSON')
+		if ($format == 'JSON')
 		{
 			//Parse JSON response
 			$this->parse_json($response);
 		}
-		else if($format == 'XML')
+		else if ($format == 'XML')
 		{
 			//Parse XML response
 			$this->parse_xml($response);
@@ -55,7 +56,7 @@ class Sendgrid_Response {
 		else
 		{
 			//Unknown response format
-			throw new Sendgrid_Response_Exception('Unsupported Response Format `:format`',array(':format' => $format));
+			throw new Sendgrid_Response_Exception('Unsupported Response Format `:format`', array(':format' => $format));
 		}
 	}
 
@@ -70,13 +71,13 @@ class Sendgrid_Response {
 	{
 		$converted = json_decode($response);
 
-		if(isset($converted->message) && $converted->message == 'success')
+		if (isset($converted->message) && $converted->message == 'success')
 		{
 			$this->_success = TRUE;
 			$this->_data = (array)$converted;
 		}
 
-		if(isset($converted->error))
+		if (isset($converted->error))
 		{
 			$this->_success = FALSE;
 			$this->_error = $converted->error;
@@ -94,7 +95,7 @@ class Sendgrid_Response {
 	{
 		$converted = simplexml_load_string($response);
 
-		if($converted->message == 'success')
+		if ($converted->message == 'success')
 		{
 			$this->_success = TRUE;
 			$this->_data = (array)$converted;

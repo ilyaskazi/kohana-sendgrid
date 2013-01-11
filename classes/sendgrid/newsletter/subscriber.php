@@ -1,11 +1,12 @@
 <?php
 /**
  * Sendgrid Newsletter Subscriber API Object
- * 
+ *
  * @package Sendgrid/Newsletter
  * @author Craig Sparks <craig@ad-vantagemedia.com>
  */
-class Sendgrid_Newsletter_Subscriber {
+class Sendgrid_Newsletter_Subscriber
+{
 
 	/**
 	 * @var string Email of the subscriber
@@ -26,9 +27,9 @@ class Sendgrid_Newsletter_Subscriber {
 	 */
 	public function __construct(array $data = array())
 	{
-		foreach($data as $key=>$val)
+		foreach ($data as $key => $val)
 		{
-			if(isset($this->$key))
+			if (isset($this->$key))
 			{
 				$this->$key = $val;
 			}

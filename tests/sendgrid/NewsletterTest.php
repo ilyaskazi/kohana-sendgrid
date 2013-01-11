@@ -32,9 +32,9 @@ class Sendgrid_NewsletterTest extends PHPUnit_Framework_TestCase
 			->expects($this->once())
 			->method('execute')
 			->with(
-				$this->equalTo(Sendgrid_Newsletter::URL_CATEGORY_CREATE),
-				$this->equalTo($data)
-			);
+			$this->equalTo(Sendgrid_Newsletter::URL_CATEGORY_CREATE),
+			$this->equalTo($data)
+		);
 
 		$newsletter = new Sendgrid_Newsletter($sendgrid);
 

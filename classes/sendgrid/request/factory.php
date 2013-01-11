@@ -5,7 +5,8 @@
  * initializing Kohana_Request inside of sendgrid objects.
  */
 
-class Sendgrid_Request_Factory {
+class Sendgrid_Request_Factory
+{
 
 	/**
 	 * Static method used to initialize a new request object

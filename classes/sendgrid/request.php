@@ -1,6 +1,7 @@
 <?php
 
-class Sendgrid_Request {
+class Sendgrid_Request
+{
 
 
 	protected $_api_user;
@@ -26,13 +27,13 @@ class Sendgrid_Request {
 		$this->_request = $request;
 
 		//Check to ensure api_user is defined and not empty
-		if(!array_key_exists('api_user',$config) || empty($config['api_user']))
+		if (!array_key_exists('api_user', $config) || empty($config['api_user']))
 		{
 			throw new Sendgrid_Request_Exception('api_user config item is required.');
 		}
 
 		//Check to ensure api_key is defined and not empty
-		if(!array_key_exists('api_key',$config) || empty($config['api_key']))
+		if (!array_key_exists('api_key', $config) || empty($config['api_key']))
 		{
 			throw new Sendgrid_Request_Exception('api_key config item is required.');
 		}
@@ -52,27 +53,27 @@ class Sendgrid_Request {
 	 */
 	public function execute($url, array $data = array())
 	{
-		$url = $url.'.'.self::RESPONSE_FORMAT;
+		$url = $url . '.' . self::RESPONSE_FORMAT;
 
 		$request = $this->_request;
 
 		$data = $data + array(
 			'api_user' => $this->_api_user,
-			'api_key'  => $this->_api_key
+			'api_key' => $this->_api_key
 		);
 
 		try
 		{
 			$response = $request::create($url)
-							->query($data)
-							->execute();
+				->query($data)
+				->execute();
 		}
-		catch(Sendgrid_Request_Exception $e)
+		catch (Sendgrid_Request_Exception $e)
 		{
 			//Need to figure how to handle this
 		}
 
-		return new Sendgrid_Response($response->body(),$this->_response_format);
+		return new Sendgrid_Response($response->body(), $this->_response_format);
 	}
 
 }

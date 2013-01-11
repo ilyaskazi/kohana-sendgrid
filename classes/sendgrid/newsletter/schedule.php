@@ -7,20 +7,20 @@
  */
 class Sendgrid_Newsletter_Schedule
 {
-    public $newsletter = NULL;
+	public $newsletter = NULL;
 
-    public $deliver_time = NULL;
+	public $deliver_time = NULL;
 
-    public $delivery_delay = NULL;
+	public $delivery_delay = NULL;
 
-    public function __construct(array $data = array())
-    {
-        foreach($data as $key=>$val)
-        {
-            if(isset($this->$key))
-            {
-                $this->$key = $val;
-            }
-        }
-    }
+	public function __construct(array $data = array())
+	{
+		foreach ($data as $key => $val)
+		{
+			if (isset($this->$key))
+			{
+				$this->$key = $val;
+			}
+		}
+	}
 }

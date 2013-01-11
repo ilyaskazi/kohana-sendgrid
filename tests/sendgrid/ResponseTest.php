@@ -13,7 +13,7 @@ class Sendgrid_ResponseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test_invalid_format_throws_exception()
 	{
-		$object = new Sendgrid_Response('','INVALID');
+		$object = new Sendgrid_Response('', 'INVALID');
 	}
 
 	/**
@@ -23,9 +23,9 @@ class Sendgrid_ResponseTest extends PHPUnit_Framework_TestCase
 	{
 		$response = '{"message": "success"}';
 
-		$object = new Sendgrid_Response($response,'JSON');
+		$object = new Sendgrid_Response($response, 'JSON');
 
-		$this->assertSame(FALSE,$object->has_error());
+		$this->assertSame(FALSE, $object->has_error());
 	}
 
 	/**
@@ -35,9 +35,9 @@ class Sendgrid_ResponseTest extends PHPUnit_Framework_TestCase
 	{
 		$response = "<?xml version='1.0' encoding='UTF-8'?><result><message>success</message></result>";
 
-		$object = new Sendgrid_Response($response,'XML');
+		$object = new Sendgrid_Response($response, 'XML');
 
-		$this->assertSame(FALSE,$object->has_error());
+		$this->assertSame(FALSE, $object->has_error());
 	}
 
 	/**
@@ -47,10 +47,10 @@ class Sendgrid_ResponseTest extends PHPUnit_Framework_TestCase
 	{
 		$response = '{"error": "error in category: category is required"}';
 
-		$object = new Sendgrid_Response($response,'JSON');
+		$object = new Sendgrid_Response($response, 'JSON');
 
-		$this->assertSame(TRUE,$object->has_error());
-		$this->assertSame('error in category: category is required',$object->get_error());
+		$this->assertSame(TRUE, $object->has_error());
+		$this->assertSame('error in category: category is required', $object->get_error());
 	}
 
 	/**
@@ -60,9 +60,9 @@ class Sendgrid_ResponseTest extends PHPUnit_Framework_TestCase
 	{
 		$response = "<?xml version='1.0' encoding='UTF-8'?><errors><error>error in category: category is required</error></errors>";
 
-		$object = new Sendgrid_Response($response,'XML');
+		$object = new Sendgrid_Response($response, 'XML');
 
-		$this->assertSame(TRUE,$object->has_error());
-		$this->assertSame('error in category: category is required',$object->get_error());
+		$this->assertSame(TRUE, $object->has_error());
+		$this->assertSame('error in category: category is required', $object->get_error());
 	}
 }
