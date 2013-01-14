@@ -90,10 +90,10 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 
 		if ($name !== NULL)
 		{
-			$data['name'] = $name;
+			$data['list'] = $name;
 		}
 
-		return $this->_request->execute(self::URL_LIST_GET, $data);
+		return $this->_request->execute(self::URL_EMAIL_GET, $data);
 	}
 
 	public function add_template(Sendgrid_Template $template)
