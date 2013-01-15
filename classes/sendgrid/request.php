@@ -53,7 +53,7 @@ class Sendgrid_Request
 	 */
 	public function execute($url, array $data = array())
 	{
-		$url = $url . '.' . self::RESPONSE_FORMAT;
+		$url = $url . '.' . strtolower($this->_response_format);
 
 		$request = $this->_request;
 

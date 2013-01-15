@@ -71,16 +71,15 @@ class Sendgrid_Response
 	{
 		$converted = json_decode($response);
 
-		if (isset($converted->message) && $converted->message == 'success')
-		{
-			$this->_success = TRUE;
-			$this->_data = (array)json_decode($converted);
-		}
-
 		if (isset($converted->error))
 		{
 			$this->_success = FALSE;
 			$this->_error = $converted->error;
+		}
+		else
+		{
+			$this->_success = TRUE;
+			$this->_data = (array)$converted;
 		}
 	}
 
