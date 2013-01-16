@@ -22,10 +22,7 @@ class Sendgrid_Newsletter_Template
 	{
 		foreach ($data as $key => $val)
 		{
-			if (isset($this->$key))
-			{
-				$this->$key = $val;
-			}
+			$this->$key = $val;
 		}
 	}
 }

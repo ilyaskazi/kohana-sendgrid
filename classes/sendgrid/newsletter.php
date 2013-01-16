@@ -96,10 +96,10 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 		return $this->_request->execute(self::URL_EMAIL_GET, $data);
 	}
 
-	public function add_template(Sendgrid_Template $template)
+	public function add_template(Sendgrid_Newsletter_Template $template)
 	{
 		$data = array(
-			'identity' => $template->identity,
+			'identity' => $this->_request->get_identity(),
 			'name' => $template->name,
 			'subject' => $template->subject,
 			'html' => $template->html,
@@ -109,10 +109,10 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 		return $this->_request->execute(self::URL_NEWSLETTER_ADD, $data);
 	}
 
-	public function edit_template(Sendgrid_Template $template, $new_name = NULL)
+	public function edit_template(Sendgrid_Newsletter_Template $template, $new_name = NULL)
 	{
 		$data = array(
-			'identity' => $template->identity,
+			'identity' => $this->_request->get_identity(),
 			'name' => $template->name,
 			'subject' => $template->subject,
 			'html' => $template->html,
@@ -222,8 +222,12 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 	{
 		$data = array(
 			'list' => $list,
-			'newlist' => $new_name
 		);
+
+		if($new_name !== NULL)
+		{
+			$data['newlist'] = $new_name;
+		}
 
 		return $this->_request->execute(self::URL_LIST_EDIT, $data);
 	}
@@ -282,6 +286,35 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 		);
 
 		return $this->_request->execute(self::URL_SCHEDULE_DELETE, $data);
+	}
+
+	public function add_recipient_list_to_newsletter($list, $newsletter)
+	{
+		$data = array(
+			'list' => $list,
+			'name' => $newsletter
+		);
+
+		return $this->_request->execute(self::URL_RECIPIENTS_ADD, $data);
+	}
+
+	public function remove_recipient_list_from_newsletter($list, $newsletter)
+	{
+		$data = array(
+			'list' => $list,
+			'name' => $newsletter
+		);
+
+		return $this->_request->execute(self::URL_RECIPIENTS_DELETE, $data);
+	}
+
+	public function get_recipient_lists_for_newsletter($newsletter)
+	{
+		$data = array(
+			'name' => $newsletter
+		);
+
+		return $this->_request->execute(self::URL_RECIPIENTS_GET, $data);
 	}
 
 }

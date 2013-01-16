@@ -7,6 +7,7 @@ class Sendgrid_Request
 	protected $_api_user;
 	protected $_api_key;
 	protected $_response_format = 'JSON';
+	protected $_identity = NULL;
 
 	/**
 	 * @var  Sendgrid_Request_Factory  Kohana request
@@ -38,9 +39,28 @@ class Sendgrid_Request
 			throw new Sendgrid_Request_Exception('api_key config item is required.');
 		}
 
+		//Check to ensure response format is defined and not empty
+		if (!array_key_exists('response_format', $config) || empty($config['response_format']))
+		{
+			throw new Sendgrid_Request_Exception('response_format config item is required.');
+		}
+
+		//Check to ensure api_key is defined and not empty
+		if (!array_key_exists('identity', $config) || empty($config['identity']))
+		{
+			throw new Sendgrid_Request_Exception('identity config item is required.');
+		}
+
 		//Assign the config values to object
 		$this->_api_user = $config['api_user'];
 		$this->_api_key = $config['api_key'];
+		$this->_response_format = $config['response_format'];
+		$this->_identity = $config['identity'];
+	}
+
+	public function get_identity()
+	{
+		return $this->_identity;
 	}
 
 	/**

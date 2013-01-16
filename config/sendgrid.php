@@ -8,5 +8,8 @@ return array(
 	'api_key'  => '',
 
 	//Sendgrid Response Format (JSON or XML)
-	'response_format' => 'JSON'
+	'response_format' => 'JSON',
+
+	//Send Identity (Used for newsletters)
+	'send_identity' => NULL,
 );

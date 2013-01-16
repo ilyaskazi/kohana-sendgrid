@@ -29,10 +29,23 @@ class Sendgrid_Newsletter_Subscriber
 	{
 		foreach ($data as $key => $val)
 		{
-			if (isset($this->$key))
-			{
-				$this->$key = $val;
-			}
+			$this->$key = $val;
 		}
+	}
+
+	public function add($email, $name, array $additional = array())
+	{
+		$data = array(
+			'email' => $email,
+			'name' => $name,
+
+		);
+
+		foreach($additional as $key => $val)
+		{
+			$data[$key] = $val;
+		}
+
+		$this->data[] = json_encode($data);
 	}
 }
