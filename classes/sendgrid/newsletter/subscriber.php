@@ -5,13 +5,7 @@
  * @package Sendgrid/Newsletter
  * @author Craig Sparks <craig@ad-vantagemedia.com>
  */
-class Sendgrid_Newsletter_Subscriber
-{
-
-	/**
-	 * @var string Email of the subscriber
-	 */
-	public $email = NULL;
+class Sendgrid_Newsletter_Subscriber {
 
 	/**
 	 * @var array Array of columns with data for subscriber (i.e. array('name' => 'user name'))
@@ -25,13 +19,16 @@ class Sendgrid_Newsletter_Subscriber
 	 *
 	 * @return void
 	 */
-	public function __construct(array $data = array())
+	/*public function __construct(array $data = array())
 	{
+		$array = array();
 		foreach ($data as $key => $val)
 		{
-			$this->$key = $val;
+			$array[$key] = $val;
 		}
-	}
+
+		$this->data[] = $array;
+	}*/
 
 	public function add($email, $name, array $additional = array())
 	{

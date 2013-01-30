@@ -82,11 +82,16 @@ class Sendgrid_Request
 			'api_key' => $this->_api_key
 		);
 
+		//var_dump($data); die();
+
 		try
 		{
 			$response = $request::create($url)
 				->query($data)
 				->execute();
+			//var_dump(urldecode(URL::query($response->query()))); die();
+
+			//var_dump($response); die();
 		}
 		catch (Sendgrid_Request_Exception $e)
 		{
