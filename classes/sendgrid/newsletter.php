@@ -63,12 +63,12 @@ class Sendgrid_Newsletter extends Sendgrid_Base
 
 		foreach ($subscribers as $subscriber)
 		{
-			$subscriber_data[] = $subscriber;
+			$subscriber_data[] =json_encode($subscriber);
 		}
 
 		$data = array(
 			'list' => $list->name,
-			'data' => json_encode($subscriber_data)
+			'data' => $subscriber_data
 		);
 
 		return $this->_request->execute(self::URL_EMAIL_ADD, $data);

@@ -77,7 +77,7 @@ class Sendgrid_Request
 
 		$request = $this->_request;
 
-		$data = $data + array(
+		$query = array(
 			'api_user' => $this->_api_user,
 			'api_key' => $this->_api_key
 		);
@@ -87,9 +87,10 @@ class Sendgrid_Request
 		try
 		{
 			$response = $request::create($url)
-				->query($data)
+				->post($data)
+				->query($query)
 				->execute();
-			//var_dump(urldecode(URL::query($response->query()))); die();
+			//var_dump($response->render()); die();
 
 			//var_dump($response); die();
 		}
